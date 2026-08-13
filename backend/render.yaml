@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: helpdesk-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    disk:
+      name: sqlite-data
+      mountPath: /opt/render/project/src/backend/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5005
+      - key: DB_PATH
+        value: /opt/render/project/src/backend/data/database.sqlite
+      - key: JWT_SECRET
+        generateValue: true
